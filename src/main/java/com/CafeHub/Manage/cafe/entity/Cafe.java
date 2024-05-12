@@ -2,6 +2,7 @@ package com.CafeHub.Manage.cafe.entity;
 
 import com.CafeHub.Manage.common.BaseEntity;
 import com.CafeHub.Manage.menu.entity.Menu;
+import com.CafeHub.Manage.theme.entity.Theme;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,6 +40,10 @@ public class Cafe extends BaseEntity {
     private String operationHours;
 
     private String closedDays;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "theme_id")
+    private Theme theme;
 
 
     @OneToMany(mappedBy = "cafe")
