@@ -3,6 +3,7 @@ package com.CafeHub.Manage.cafe.controller;
 
 import com.CafeHub.Manage.cafe.request.AllCafeGetRequest;
 import com.CafeHub.Manage.cafe.request.CafeCreateRequest;
+import com.CafeHub.Manage.cafe.request.CafeDeleteRequest;
 import com.CafeHub.Manage.cafe.request.CafeInfoRequest;
 import com.CafeHub.Manage.cafe.response.AllCafeGetResponse;
 import com.CafeHub.Manage.cafe.response.CafeInfoResponse;
@@ -57,8 +58,8 @@ public class CafeController {
         return "redirect:/cafes/" + createdCafeId;
     }
 
-    
-    // 여기 부터 미완
+
+
     @GetMapping("/cafeUpdateForm")
     public String cafeUpdateForm(){
 
@@ -71,8 +72,11 @@ public class CafeController {
         return "redirect:/cafes/{cafeId}";
     }
 
-    @PostMapping("/deleteCafe/{cafeId}")
-    public String deleteCafe(){
+    @PostMapping("/deleteCafe")
+    public String deleteCafe(@RequestParam("cafeId") Long cafeId){
+
+        CafeDeleteRequest request = new CafeDeleteRequest(cafeId);
+        cafeService.deleteCafe(request);
 
         return "redirect:/cafes";
     }

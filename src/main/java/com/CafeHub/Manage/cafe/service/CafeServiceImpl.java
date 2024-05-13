@@ -4,11 +4,11 @@ import com.CafeHub.Manage.cafe.entity.Cafe;
 import com.CafeHub.Manage.cafe.repository.CafeRepository;
 import com.CafeHub.Manage.cafe.request.AllCafeGetRequest;
 import com.CafeHub.Manage.cafe.request.CafeCreateRequest;
+import com.CafeHub.Manage.cafe.request.CafeDeleteRequest;
 import com.CafeHub.Manage.cafe.request.CafeInfoRequest;
 import com.CafeHub.Manage.cafe.response.AllCafeGetResponse;
 import com.CafeHub.Manage.cafe.response.CafeInfoResponse;
 import com.CafeHub.Manage.cafe.response.CafeResponse;
-import com.CafeHub.Manage.theme.entity.Theme;
 import com.CafeHub.Manage.theme.repository.ThemeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -94,6 +93,14 @@ public class CafeServiceImpl implements CafeService{
 
         cafeRepository.save(cafe);
         return cafe.getId();
+    }
+
+
+    @Override
+    @Transactional
+    public void deleteCafe(CafeDeleteRequest request) {
+
+        cafeRepository.deleteById(request.getCafeId());
     }
 
 }

@@ -147,7 +147,8 @@
 
 
     <div class="delete-button">
-        <form th:action="@{/deleteCafe/{cafeId}(cafeId=${response.cafeId})}" method="post">
+        <form th:action="@{/deleteCafe}" method="post">
+            <input type="hidden" th:name="cafeId" th:value="${response.cafeId}">
             <button type="submit"> Delete</button>
         </form>
     </div>
