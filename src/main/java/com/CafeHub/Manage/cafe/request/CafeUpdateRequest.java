@@ -9,7 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CafeCreateRequest {
+public class CafeUpdateRequest {
+
+    private Long cafeId;
 
     private String name;
 
@@ -26,3 +28,4 @@ public class CafeCreateRequest {
     // 선택한 옵션을 줄거임
     private Long themeId;
 }
+

@@ -141,6 +141,14 @@
 
     <div class="update-button">
         <form action="/cafeUpdateForm" method="get">
+            <input type="hidden" th:name="cafeId" th:value="${response.cafeId}">
+            <input type="hidden" th:name="name" th:value="${response.name}">
+            <input type="hidden" th:name="address" th:value="${response.address}">
+            <input type="hidden" th:name="cafePhotoUrl" th:value="${response.cafePhotoUrl}">
+            <input type="hidden" th:name="phone" th:value="${response.phone}">
+            <input type="hidden" th:name="operationHours" th:value="${response.operationHours}">
+            <input type="hidden" th:name="closedDays" th:value="${response.closedDays}">
+            <input type="hidden" th:name="themeId" th:value="${response.theme.id}">
             <button type="submit">Update</button>
         </form>
     </div>

@@ -1,10 +1,7 @@
 package com.CafeHub.Manage.cafe.controller;
 
 
-import com.CafeHub.Manage.cafe.request.AllCafeGetRequest;
-import com.CafeHub.Manage.cafe.request.CafeCreateRequest;
-import com.CafeHub.Manage.cafe.request.CafeDeleteRequest;
-import com.CafeHub.Manage.cafe.request.CafeInfoRequest;
+import com.CafeHub.Manage.cafe.request.*;
 import com.CafeHub.Manage.cafe.response.AllCafeGetResponse;
 import com.CafeHub.Manage.cafe.response.CafeInfoResponse;
 import com.CafeHub.Manage.cafe.service.CafeService;
@@ -20,9 +17,10 @@ public class CafeController {
     private final CafeService cafeService;
 
 
+    // 초기 개발 단계라서 페이징을 추후 할 수 있게 해두고 우선은 100개씩 받아옴, 초기 입력 데이터가 100개를 넘지 않을거 같음
     @GetMapping("/cafes")
     public String getAllCafe(@RequestParam(defaultValue = "1", name = "page") int page,
-                             @RequestParam(defaultValue = "15", name = "size") int size,
+                             @RequestParam(defaultValue = "100", name = "size") int size,
                              Model model){
 
         AllCafeGetRequest request = new AllCafeGetRequest(page,size);
@@ -59,17 +57,20 @@ public class CafeController {
     }
 
 
-
     @GetMapping("/cafeUpdateForm")
-    public String cafeUpdateForm(){
+    public String cafeUpdateForm(@ModelAttribute CafeUpdateRequest request, Model model){
 
+        // cafeInfo 에서 넘겨준걸 그대로 넘겨주는거라 request, response 구분 없이함
+        model.addAttribute("response",request);
         return "cafeUpdateForm";
     }
 
     @PostMapping("/updateCafe")
-    public String updateCafe(){
+    public String updateCafe(@ModelAttribute CafeUpdateRequest request, Model model){
 
-        return "redirect:/cafes/{cafeId}";
+        cafeService.updateCafe(request);
+
+        return "redirect:/cafes/"+request.getCafeId();
     }
 
     @PostMapping("/deleteCafe")

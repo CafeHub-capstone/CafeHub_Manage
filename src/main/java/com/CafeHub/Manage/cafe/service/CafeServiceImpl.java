@@ -2,10 +2,7 @@ package com.CafeHub.Manage.cafe.service;
 
 import com.CafeHub.Manage.cafe.entity.Cafe;
 import com.CafeHub.Manage.cafe.repository.CafeRepository;
-import com.CafeHub.Manage.cafe.request.AllCafeGetRequest;
-import com.CafeHub.Manage.cafe.request.CafeCreateRequest;
-import com.CafeHub.Manage.cafe.request.CafeDeleteRequest;
-import com.CafeHub.Manage.cafe.request.CafeInfoRequest;
+import com.CafeHub.Manage.cafe.request.*;
 import com.CafeHub.Manage.cafe.response.AllCafeGetResponse;
 import com.CafeHub.Manage.cafe.response.CafeInfoResponse;
 import com.CafeHub.Manage.cafe.response.CafeResponse;
@@ -96,11 +93,38 @@ public class CafeServiceImpl implements CafeService{
     }
 
 
+
+    @Override
+    @Transactional
+    public void updateCafe(CafeUpdateRequest request) {
+
+        Cafe prev = cafeRepository.findById(request.getCafeId()).get();
+
+
+        Cafe cafe = Cafe.builder()
+                .id(request.getCafeId())
+                .name(request.getName())
+                .address(request.getAddress())
+                .cafePhotoUrl(request.getCafePhotoUrl())
+                .phone(request.getPhone())
+                .rating(prev.getRating())
+                .reviewCount(prev.getReviewCount())
+                .operationHours(request.getOperationHours())
+                .closedDays(request.getClosedDays())
+                .theme(themeRepository.findById(request.getThemeId()).get())
+                .build();
+
+        cafeRepository.save(cafe);
+    }
+
+
     @Override
     @Transactional
     public void deleteCafe(CafeDeleteRequest request) {
 
         cafeRepository.deleteById(request.getCafeId());
     }
+
+
 
 }
