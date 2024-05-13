@@ -37,7 +37,7 @@ public class CafeServiceImpl implements CafeService{
     public AllCafeGetResponse getAllCafeList(AllCafeGetRequest request) {
 
         Pageable pageable
-                = PageRequest.of(request.getPage() - 1, request.getSize(), Sort.by(Sort.Direction.ASC, "id"));
+                = PageRequest.of(request.getPage() - 1, request.getSize(), Sort.by(Sort.Direction.DESC, "id"));
 
         Page<Cafe> cafes = cafeRepository.findAll(pageable);
 

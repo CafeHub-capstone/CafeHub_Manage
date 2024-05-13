@@ -57,6 +57,8 @@ public class CafeController {
         return "redirect:/cafes/" + createdCafeId;
     }
 
+    
+    // 여기 부터 미완
     @GetMapping("/cafeUpdateForm")
     public String cafeUpdateForm(){
 
