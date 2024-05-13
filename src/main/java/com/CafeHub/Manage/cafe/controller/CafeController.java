@@ -2,6 +2,7 @@ package com.CafeHub.Manage.cafe.controller;
 
 
 import com.CafeHub.Manage.cafe.request.AllCafeGetRequest;
+import com.CafeHub.Manage.cafe.request.CafeCreateRequest;
 import com.CafeHub.Manage.cafe.request.CafeInfoRequest;
 import com.CafeHub.Manage.cafe.response.AllCafeGetResponse;
 import com.CafeHub.Manage.cafe.response.CafeInfoResponse;
@@ -49,10 +50,11 @@ public class CafeController {
     }
 
 
-    @PostMapping("/createCafe/{cafeId}")
-    public String createCafe(){
+    @PostMapping("/createCafe")
+    public String createCafe(@ModelAttribute CafeCreateRequest request){
 
-        return "redirect:/cafes/{cafeId}";
+        Long createdCafeId = cafeService.createNewCafe(request);
+        return "redirect:/cafes/" + createdCafeId;
     }
 
     @GetMapping("/cafeUpdateForm")
@@ -61,7 +63,7 @@ public class CafeController {
         return "cafeUpdateForm";
     }
 
-    @PostMapping("/updateCafe/{cafeId}")
+    @PostMapping("/updateCafe")
     public String updateCafe(){
 
         return "redirect:/cafes/{cafeId}";

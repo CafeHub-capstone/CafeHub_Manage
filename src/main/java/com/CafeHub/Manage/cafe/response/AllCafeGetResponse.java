@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AllCafeGetResponse {
+public class    AllCafeGetResponse {
 
     private List<CafeResponse> cafeResponses;
 
