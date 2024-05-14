@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe List</title>
+    <title>Themes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,12 +71,6 @@
             background-color: #0056b3;
         }
 
-
-        .page-buttons {
-            margin-top: 20px;
-            text-align: center;
-        }
-
         .page-buttons a,
         .page-buttons span {
             display: inline-block;
@@ -92,85 +86,81 @@
             background-color: #f2f2f2;
         }
 
-
-        .index-column {
-            width: 20%; /* 너비 조정 */
+        .index-column,
+        .theme-id-column
+        {
+            width: 15%;
         }
 
-        .name-column {
-            width: 60%; /* 너비 조정 */
+        .cafe-count-column{
+            width: 20%;
         }
 
-        .theme-column {
-            width: 20%; /* 너비 조정 */
-        }
-        .logout-button{
-            background-color: black;
-            color: white;
-        }
-        .logout-button:hover{
-            background-color: #7c7878;
+        .theme-name-column {
+            width: 50%;
         }
 
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
 
+        .button-container a,
+        .button-container button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            cursor: pointer;
+        }
 
+        .button-container a:hover,
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container a.cancel {
+            background-color: #dc3545;
+        }
+
+        .button-container a.cancel:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
 <div class="header">
-
-    <h1>Cafe List</h1>
-
-    <form th:action="@{/logout}" method="post">
-        <button class="logout-button" type="submit">Log out</button>
-    </form>
+    <h1>Themes</h1>
 </div>
 
 <br>
-
-
-
-
-
-
-
-<form action="#" method="get">
-    <label for="search"></label>
-    <input type="text" id="search" name="search" placeholder="Enter cafe name...">
-    <button type="submit">Search</button>
-</form>
 
 <table>
     <thead>
     <tr>
         <th>No.</th>
-        <th>Cafe Name</th>
-        <th>Theme</th>
+        <th>Theme Id</th>
+        <th>Theme Name</th>
+        <th>Cafe Count</th>
     </tr>
     </thead>
     <tbody>
-
-    <tr th:each="cafe, iterstat : ${response.cafeResponses}">
-        <td class="index-column" th:text="${(response.currentPage) * response.size + iterstat.count}">index</td>
-        <td>
-            <a th:href="@{'/cafes/' + ${cafe.cafeId}}">
-                <span class="name-column" th:text="${cafe.cafeName}">Cafe Name</span>
-            </a>
-        </td>
-        <td class="theme-column" th:text="${cafe.cafeTheme}">Theme</td>
+    <tr th:each="theme, iterstat : ${response.themes}">
+        <td class="index-column" th:text="${iterstat.count}">index</td>
+        <td class="theme-id-column" th:text="${theme.id}">Theme id</td>
+        <td class="theme-name-column" th:text="${theme.name}">name</td>
+        <td class="cafe-count-column" th:text="${theme.cafeCount}">cnt</td>
     </tr>
-
     </tbody>
 </table>
 
-<div class="page-buttons">
-
-    <button class="write-button" type="button" onclick="window.location.href='/cafeCreateForm'">New Cafe</button>
-    <button class="write-button" type="button" onclick="window.location.href='/themes'">Themes</button>
-
+<div class="button-container">
+    <a th:href="@{/themeCreateForm}">New Theme</a>
+    <a th:href="@{/cafes}" class="cancel">Go to Cafes</a>
 </div>
-
-<!-- 페이징 버튼은 나중에 처리-->
 
 </body>
 </html>
