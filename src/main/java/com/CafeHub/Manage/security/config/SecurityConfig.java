@@ -1,6 +1,7 @@
 package com.CafeHub.Manage.security.config;
 
 
+import com.CafeHub.Manage.handler.LoginFailureHandler;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,11 @@ public class SecurityConfig {
     }
 
     @Bean
+    public LoginFailureHandler loginFailureHandler(){
+        return new LoginFailureHandler();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
         http
@@ -30,7 +36,7 @@ public class SecurityConfig {
         // 커스텀 로그인 폼 추가 , + 추후 로그인 실패에 대한 처리를 담당할 에러 핸들러 추가할 예정
         http
                 .formLogin((auth)->auth.loginPage("/login")
-//                        .failureHandler(loginFailManager())
+                        .failureHandler(loginFailureHandler())
                         .permitAll()
                 );
 

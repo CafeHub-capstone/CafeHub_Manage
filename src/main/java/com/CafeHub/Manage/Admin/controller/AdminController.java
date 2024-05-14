@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -52,7 +53,9 @@ public class AdminController {
     }
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(@RequestParam(name = "error", required = false)String error, Model model){
+
+        if(error!=null) model.addAttribute("error", "아이디나 비밀번호를 다시 확인하세요.");
 
         return "login";
     }
