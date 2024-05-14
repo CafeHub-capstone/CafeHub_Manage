@@ -108,12 +108,33 @@
         .theme-column {
             width: 20%; /* 너비 조정 */
         }
+        .logout-button{
+            background-color: black;
+            color: white;
+        }
+        .logout-button:hover{
+            background-color: #7c7878;
+        }
+
+
 
     </style>
 </head>
 <body>
-<h1>Cafe List</h1>
+<div class="header">
+    <h1>Cafe List</h1>
+    <form th:action="@{/logout}" method="post">
+        <button class="logout-button" type="submit">Log out</button>
+    </form>
+</div>
+
 <br>
+
+
+
+
+
+
 
 <form action="#" method="get">
     <label for="search"></label>

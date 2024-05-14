@@ -125,6 +125,4 @@ public class CafeServiceImpl implements CafeService{
         cafeRepository.deleteById(request.getCafeId());
     }
 
-
-
 }

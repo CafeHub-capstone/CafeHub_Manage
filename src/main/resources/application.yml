@@ -20,6 +20,7 @@ logging.level:
   org.hibernate.SQL: debug
 
 
+# 세션 저장소에 있는 사용자 세션 매 요청마다 1800초로 갱신
 server:
   servlet:
     session:

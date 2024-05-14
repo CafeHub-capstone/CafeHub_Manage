@@ -17,6 +17,13 @@ public class CafeController {
     private final CafeService cafeService;
 
 
+    @GetMapping("/")
+    public String index(){
+
+        return "redirect:/cafes";
+    }
+
+
     // 초기 개발 단계라서 페이징을 추후 할 수 있게 해두고 우선은 100개씩 받아옴, 초기 입력 데이터가 100개를 넘지 않을거 같음
     @GetMapping("/cafes")
     public String getAllCafe(@RequestParam(defaultValue = "1", name = "page") int page,
