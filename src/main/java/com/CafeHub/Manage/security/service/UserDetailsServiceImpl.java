@@ -1,7 +1,7 @@
 package com.CafeHub.Manage.security.service;
 
 import com.CafeHub.Manage.Admin.entity.Admin;
-import com.CafeHub.Manage.Admin.service.AdminRepositroy;
+import com.CafeHub.Manage.Admin.repository.AdminRepositroy;
 import com.CafeHub.Manage.security.dto.UserAuthDTO;
 import com.CafeHub.Manage.security.dto.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;

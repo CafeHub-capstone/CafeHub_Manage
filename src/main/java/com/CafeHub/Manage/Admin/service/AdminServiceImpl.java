@@ -2,6 +2,8 @@ package com.CafeHub.Manage.Admin.service;
 
 
 import com.CafeHub.Manage.Admin.entity.Admin;
+import com.CafeHub.Manage.Admin.exception.AdminUsernameDuplicateException;
+import com.CafeHub.Manage.Admin.repository.AdminRepositroy;
 import com.CafeHub.Manage.Admin.request.SignupRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +23,11 @@ public class AdminServiceImpl implements AdminService{
     @Transactional
     public void signup(SignupRequest request) {
 
+
+        if(checkDuplicateUsername(request.getUsername())) {
+            throw new AdminUsernameDuplicateException();
+        }
+
         Admin admin = Admin.builder()
                 .username(request.getUsername())
                 .password(bCryptPasswordEncoder.encode(request.getPassword()))
@@ -30,4 +37,11 @@ public class AdminServiceImpl implements AdminService{
 
         adminRepositroy.save(admin);
     }
+
+
+    private Boolean checkDuplicateUsername(String username) {
+        return adminRepositroy.existsByUsername(username);
+    }
+
+
 }
