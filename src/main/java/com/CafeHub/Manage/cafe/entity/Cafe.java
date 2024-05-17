@@ -46,6 +46,6 @@ public class Cafe extends BaseEntity {
     private Theme theme;
 
 
-    @OneToMany(mappedBy = "cafe")
+    @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL)
     private List<Menu> menus = new ArrayList<>();
 }
