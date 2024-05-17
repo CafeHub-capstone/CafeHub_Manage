@@ -25,3 +25,5 @@ server:
   servlet:
     session:
       timeout: 1800
+
+  port: 8090

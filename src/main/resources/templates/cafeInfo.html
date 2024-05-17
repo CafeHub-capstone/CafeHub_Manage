@@ -135,7 +135,14 @@
 <div class="button-container">
     <div class="back-button">
         <form action="/cafes" method="get">
+            <input type="hidden" th:name="cafeId" th:value="${response.cafeId}">
             <button type="submit">CafeList</button>
+        </form>
+    </div>
+
+    <div class="back-button">
+        <form th:action="@{'/menus/' + ${response.cafeId}}" method="get">
+        <button type="submit">Menus</button>
         </form>
     </div>
 
