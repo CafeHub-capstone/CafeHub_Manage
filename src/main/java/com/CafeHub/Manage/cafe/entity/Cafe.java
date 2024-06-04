@@ -1,6 +1,6 @@
 package com.CafeHub.Manage.cafe.entity;
 
-import com.CafeHub.Manage.common.BaseEntity;
+import com.CafeHub.Manage.common.Timestamped;
 import com.CafeHub.Manage.menu.entity.Menu;
 import com.CafeHub.Manage.theme.entity.Theme;
 import jakarta.persistence.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Cafe extends BaseEntity {
+public class Cafe extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +31,8 @@ public class Cafe extends BaseEntity {
 
     private String phone;
 
-    // 초기 값은 0, 이후 컨트롤 x, 자동 반영
     private BigDecimal rating;
 
-    // 초기 값은 0, 이후 컨트롤 x, 자동 반영
     private Integer reviewCount;
 
     private String operationHours;

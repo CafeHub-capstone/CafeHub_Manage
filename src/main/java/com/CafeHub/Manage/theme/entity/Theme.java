@@ -1,7 +1,7 @@
 package com.CafeHub.Manage.theme.entity;
 
 import com.CafeHub.Manage.cafe.entity.Cafe;
-import com.CafeHub.Manage.common.BaseEntity;
+import com.CafeHub.Manage.common.Timestamped;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Theme extends BaseEntity{
+public class Theme extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

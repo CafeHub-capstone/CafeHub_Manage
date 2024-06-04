@@ -1,7 +1,7 @@
 package com.CafeHub.Manage.menu.entity;
 
 import com.CafeHub.Manage.cafe.entity.Cafe;
-import com.CafeHub.Manage.common.BaseEntity;
+import com.CafeHub.Manage.common.Timestamped;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Menu extends BaseEntity{
+public class Menu extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
