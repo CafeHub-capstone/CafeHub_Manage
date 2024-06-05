@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @Controller
 @RequiredArgsConstructor
 public class CafeController {
@@ -56,8 +58,8 @@ public class CafeController {
     }
 
 
-    @PostMapping("/createCafe")
-    public String createCafe(@ModelAttribute CafeCreateRequest request){
+    @PostMapping(value = "/createCafe", consumes = "multipart/form-data")
+    public String createCafe(@ModelAttribute CafeCreateRequest request) throws IOException {
 
         Long createdCafeId = cafeService.createNewCafe(request);
         return "redirect:/cafes/" + createdCafeId;

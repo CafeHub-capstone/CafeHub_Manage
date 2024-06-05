@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ public class CafeCreateRequest {
 
     private String address;
 
-    private String cafePhotoUrl;
+    private MultipartFile cafePhoto;
 
     private String phone;
 

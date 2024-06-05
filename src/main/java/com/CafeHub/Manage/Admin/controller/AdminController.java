@@ -1,11 +1,13 @@
 package com.CafeHub.Manage.Admin.controller;
 
 
+import com.CafeHub.Manage.Admin.AdminConfig;
 import com.CafeHub.Manage.Admin.exception.SecretCodeInvaildException;
 import com.CafeHub.Manage.Admin.request.SignupRequest;
 import com.CafeHub.Manage.Admin.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +25,9 @@ public class AdminController {
 
     private final AdminService adminService;
 
-    private final static String SECRET_CODE = "aaa";
+    private final AdminConfig adminConfig;
+
+
 
     @GetMapping("/signup")
     public String signupPage() {
@@ -44,12 +48,12 @@ public class AdminController {
             return "signup";
         }
 
-        if(!request.getCode().equals(SECRET_CODE)) throw new SecretCodeInvaildException();
+        if(!request.getCode().equals(adminConfig.getSecretCode())) throw new SecretCodeInvaildException();
 
 
         adminService.signup(request);
 
-        return "/login";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")

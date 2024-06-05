@@ -6,6 +6,7 @@ import com.CafeHub.Manage.cafe.request.*;
 import com.CafeHub.Manage.cafe.response.AllCafeGetResponse;
 import com.CafeHub.Manage.cafe.response.CafeInfoResponse;
 import com.CafeHub.Manage.cafe.response.CafeResponse;
+import com.CafeHub.Manage.s3.S3Manager;
 import com.CafeHub.Manage.theme.repository.ThemeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +29,9 @@ public class CafeServiceImpl implements CafeService{
     private final CafeRepository cafeRepository;
 
     private final ThemeRepository themeRepository;
+
+    private final S3Manager s3Manager;
+
 
 
     @Override
@@ -72,14 +77,17 @@ public class CafeServiceImpl implements CafeService{
                 .orElseThrow(() -> new RuntimeException("에러처리는 나중에 해당 카페id로 카페 정보를 찾을 수 없음: " + request.getCafeId()));
     }
 
+    // 일단 단순 업로드만 가능
     @Override
     @Transactional
-    public Long createNewCafe(CafeCreateRequest request) {
+    public Long createNewCafe(CafeCreateRequest request) throws IOException {
+
+        String cafePhotoUrl = s3Manager.uploadFile(s3Manager.generateCafePhotoKeyName(), request.getCafePhoto());
 
         Cafe cafe = Cafe.builder()
                 .name(request.getName())
                 .address(request.getAddress())
-                .cafePhotoUrl(request.getCafePhotoUrl())
+                .cafePhotoUrl(cafePhotoUrl)
                 .phone(request.getPhone())
                 .rating(BigDecimal.valueOf(0))
                 .reviewCount(0)
