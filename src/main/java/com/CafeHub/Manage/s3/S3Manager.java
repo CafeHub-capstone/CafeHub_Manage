@@ -25,6 +25,7 @@ public class S3Manager {
         return amazonS3.getUrl(s3Config.getBucket(), keyName).toString();
     }
 
+
     public String generateCafePhotoKeyName() {
         return s3Config.getCafesPath() + '/' + UUID.randomUUID();
     }
