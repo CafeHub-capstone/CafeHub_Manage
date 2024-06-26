@@ -8,5 +8,4 @@ public interface AdminRepositroy extends JpaRepository<Admin, Long> {
 
     Boolean existsByUsername(String username);
 
-    Boolean existsByName(String name);
 }

@@ -1,12 +1,10 @@
 package com.CafeHub.Manage.cafe.entity;
 
-import com.CafeHub.Manage.common.Timestamped;
+import com.CafeHub.Manage.common.BaseEntity;
 import com.CafeHub.Manage.menu.entity.Menu;
-import com.CafeHub.Manage.theme.entity.Theme;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Cafe extends Timestamped {
+public class Cafe extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,24 +22,23 @@ public class Cafe extends Timestamped {
 
     private String name;
 
-    private String address;
+    private Theme theme;
 
-    @Lob
-    private String cafePhotoUrl;
+    private String address;
 
     private String phone;
 
-    private BigDecimal rating;
-
-    private Integer reviewCount;
-
     private String operationHours;
 
-    private String closedDays;
+    private String closeDays;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "theme_id")
-    private Theme theme;
+    private Double rating;
+
+    private Integer reviewCnt;
+
+    private String photoUrl;
+
+    private String photoKey;
 
 
     @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL)

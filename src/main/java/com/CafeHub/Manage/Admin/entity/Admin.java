@@ -1,7 +1,7 @@
 package com.CafeHub.Manage.Admin.entity;
 
 
-import com.CafeHub.Manage.common.Timestamped;
+import com.CafeHub.Manage.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Admin extends Timestamped {
+public class Admin extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.CafeHub.Manage.cafe.response;
 
+import com.CafeHub.Manage.cafe.entity.Theme;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,5 @@ public class CafeResponse {
 
     private String cafeName;
 
-    private String cafeTheme;
+    private Theme cafeTheme;
 }

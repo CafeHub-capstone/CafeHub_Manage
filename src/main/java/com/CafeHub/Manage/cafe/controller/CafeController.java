@@ -75,7 +75,7 @@ public class CafeController {
     }
 
     @PostMapping("/updateCafe")
-    public String updateCafe(@ModelAttribute CafeUpdateRequest request, Model model){
+    public String updateCafe(@ModelAttribute CafeUpdateRequest request){
 
         cafeService.updateCafe(request);
 

@@ -25,7 +25,6 @@ public class CafeUpdateRequest {
 
     private String closedDays;
 
-    // 선택한 옵션을 줄거임
-    private Long themeId;
+    private String theme;
 }
 

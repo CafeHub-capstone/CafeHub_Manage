@@ -97,14 +97,14 @@
     <input type="text" id="operationHours" name="operationHours" th:value="${response.operationHours}" /><br/>
     <label for="closedDays">Closed Days:</label>
     <input type="text" id="closedDays" name="closedDays" th:value="${response.closedDays}" /><br/>
-    <label for="themeId">Theme:</label>
+    <label for="theme">Theme:</label>
 
-    <select id="themeId" name="themeId">
-    <option value="1" th:selected="${response.themeId == 1}">Date</option>
-    <option value="2" th:selected="${response.themeId == 2}">Dessert</option>
-    <option value="3" th:selected="${response.themeId == 3}">Meet</option>
-    <option value="4" th:selected="${response.themeId == 4}">Study</option>
-</select>
+    <select id="theme" name="theme">
+        <option value="1" th:selected="${response.theme.equals('DATE')}">Date</option>
+        <option value="2" th:selected="${response.theme.equals('DESSERT')}">Dessert</option>
+        <option value="3" th:selected="${response.theme.equals('MEET')}">Meet</option>
+        <option value="4" th:selected="${response.theme.equals('STUDY')}">Study</option>
+    </select>
 
 
 

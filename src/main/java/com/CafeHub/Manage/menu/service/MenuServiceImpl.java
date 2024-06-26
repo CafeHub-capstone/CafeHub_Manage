@@ -30,7 +30,7 @@ public class MenuServiceImpl implements MenuService{
                         menu.getCategory(),
                         menu.getName(),
                         menu.getPrice(),
-                        menu.getBest()
+                        menu.getIsBest()
                 ))
                 .collect(Collectors.toList());
     }
@@ -43,7 +43,7 @@ public class MenuServiceImpl implements MenuService{
                 .category(request.getCategory())
                 .name(request.getName())
                 .price(request.getPrice())
-                .best(request.getBest())
+                .isBest(request.getBest())
                 .cafe(cafeRepository.findById(request.getCafeId()).get())
                 .build();
 

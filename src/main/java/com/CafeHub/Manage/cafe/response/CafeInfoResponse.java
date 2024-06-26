@@ -1,13 +1,11 @@
 package com.CafeHub.Manage.cafe.response;
 
 
-import com.CafeHub.Manage.theme.entity.Theme;
+import com.CafeHub.Manage.cafe.entity.Theme;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -25,7 +23,7 @@ public class CafeInfoResponse {
 
     private String phone;
 
-    private BigDecimal rating;
+    private Double rating;
 
     private Integer reviewCount;
 

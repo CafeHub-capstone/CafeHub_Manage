@@ -24,6 +24,6 @@ public class CafeCreateRequest {
 
     private String closedDays;
 
-    // 선택한 옵션을 줄거임
-    private Long themeId;
+    // 사용자가 화면에서 선택한 theme
+    private String theme;
 }
