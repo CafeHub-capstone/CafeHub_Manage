@@ -22,6 +22,7 @@ public class Cafe extends BaseEntity {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
     private Theme theme;
 
     private String address;

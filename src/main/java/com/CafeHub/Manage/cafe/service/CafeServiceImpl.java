@@ -79,12 +79,12 @@ public class CafeServiceImpl implements CafeService{
     @Transactional
     public Long createNewCafe(CafeCreateRequest request) throws IOException {
 
-        String cafePhotoUrl = s3Manager.uploadFile(s3Manager.generateCafePhotoKeyName(), request.getCafePhoto());
+//        String cafePhotoUrl = s3Manager.uploadFile(s3Manager.generateCafePhotoKeyName(), request.getCafePhoto());
 
         Cafe cafe = Cafe.builder()
                 .name(request.getName())
                 .address(request.getAddress())
-                .photoUrl(cafePhotoUrl)
+//                .photoUrl(cafePhotoUrl)
                 .phone(request.getPhone())
                 .rating((double)0)
                 .reviewCnt(0)
